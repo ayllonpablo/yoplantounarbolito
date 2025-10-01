@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['php83', 'php83Extensions.mbstring', 'php83Extensions.pdo_mysql', 'php83Extensions.tokenizer', 'php83Extensions.bcmath', 'php83Extensions.curl', 'php83Extensions.dom', 'php83Extensions.openssl']
+nixPkgs = ['php83', 'php83Extensions.mbstring', 'php83Extensions.pdo_mysql', 'php83Extensions.tokenizer', 'php83Extensions.bcmath', 'php83Extensions.curl', 'php83Extensions.dom', 'php83Extensions.openssl', 'php83Extensions.xml', 'php83Extensions.simplexml', 'php83Extensions.xmlwriter', 'php83Extensions.xmlreader']
 aptPkgs = ['composer']
 
 [phases.install]
