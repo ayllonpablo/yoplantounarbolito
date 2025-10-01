@@ -3,9 +3,11 @@ package app.sembrando.vidas.java_class;
 public class Variables {
 
 
-    //public final static String url = "https://calm-fjord-08371.herokuapp.com/api";
-    //private final static String url = "http://45.55.36.54/api";
-    private final static String url = "http://10.0.2.2:8000/api";
+    // Production URL - Railway deployment
+    private final static String url = "https://yoplantounarbolito-production.up.railway.app/api";
+
+    // Local development URL (for testing with emulator)
+    //private final static String url = "http://10.0.2.2:8000/api";
     private final static String PLANTAR = "Plantar", REGAR = "Regar", LIMPIEZA = "Limpieza", ABONO = "Abono",
             AGARRE = "Agarre", JUEGOS = "Juegos";
 
