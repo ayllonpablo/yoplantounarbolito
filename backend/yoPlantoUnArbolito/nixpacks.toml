@@ -2,7 +2,11 @@
 nixPkgs = ['php83', 'php83Packages.composer']
 
 [phases.install]
-cmds = ['composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev --ignore-platform-reqs']
+cmds = [
+  'mkdir -p bootstrap/cache storage/logs storage/framework/sessions storage/framework/views storage/framework/cache',
+  'chmod -R 775 storage bootstrap/cache',
+  'composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev --ignore-platform-reqs'
+]
 
 [phases.build]
 cmds = ['php artisan config:cache', 'php artisan route:cache']
