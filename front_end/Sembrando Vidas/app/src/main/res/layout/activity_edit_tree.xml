@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="app.sembrando.vidas.EditTreeActivity"
+        android:orientation="vertical">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical" android:layout_marginTop="16dp" android:layout_marginRight="44dp"
+                      android:layout_marginLeft="44dp" android:layout_marginBottom="44dp">
+
+            <ImageView
+                    android:src="@mipmap/logo"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp" android:id="@+id/imageView44"
+                    android:layout_gravity="center" android:layout_marginBottom="16dp"/>
+            <TextView
+                    android:text="Edite su arbolito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView12"
+            />
+            <TextView
+                    android:text="Cambie el nombre que guste"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView13" android:textSize="20dp"
+                    android:textColor="@color/green_secondary" android:layout_marginBottom="16dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textField2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="50dp"
+                    app:boxCornerRadiusTopStart="50dp"
+                    app:boxCornerRadiusBottomStart="50dp"
+                    app:boxCornerRadiusBottomEnd="50dp"
+                    android:hint="Nombre de usuario"
+                    app:counterEnabled="true"
+                    app:boxBackgroundColor="#00FFFFFF"
+                    app:counterMaxLength="50">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edit_name_tree" android:textColorHint="#606060"
+                        android:paddingTop="14dp" android:paddingBottom="14dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp" android:paddingTop="8dp" android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp">
+                <TextView
+                        android:text="Seleccione un personaje:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView6edit"
+                        android:textAlignment="textStart"
+                        android:fontFamily="@font/poppins_bold" android:layout_marginLeft="8dp"/>
+                <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingTop="8dp" android:paddingBottom="8dp" android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
+                            <Button
+                                    android:onClick="OnclickSelectAvatar1"
+                                    android:id="@+id/imageButtonOneEdit"
+                                    android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
+                            <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp" app:srcCompat="@mipmap/hoja"
+                                    android:id="@+id/imageViewone"/>
+                        </RelativeLayout>
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
+                            <Button
+                                    android:onClick="OnclickSelectAvatar2"
+                                    android:id="@+id/imageButtonOne2"
+                                    android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
+                            <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp" app:srcCompat="@mipmap/brote_feliz"
+                                    android:id="@+id/imageViewtwo"/>
+                        </RelativeLayout>
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
+                            <Button
+                                    android:onClick="OnclickSelectAvatar3"
+                                    android:id="@+id/imageButtonOne3"
+                                    android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
+                            <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp" app:srcCompat="@mipmap/arbolito_feliz"
+                                    android:id="@+id/imageViewthree"/>
+                        </RelativeLayout>
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
+                            <Button
+                                    android:onClick="OnclickSelectAvatar4"
+                                    android:id="@+id/imageButtonOne4"
+                                    android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
+                            <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp" app:srcCompat="@mipmap/maceta_femenina"
+                                    android:id="@+id/imageViewfor"/>
+                        </RelativeLayout>
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
+                            <Button
+                                    android:onClick="OnclickSelectAvatar5"
+                                    android:id="@+id/imageButtonOne5"
+                                    android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
+                            <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp" app:srcCompat="@mipmap/maseta_masculino"
+                                    android:id="@+id/imageView14"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+
+                    android:text="Registrar arbolito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_name_edit_tree"
+                    android:background="@drawable/button_1"
+                    app:backgroundTint="@null"
+                    android:layout_gravity="center" android:layout_marginTop="24dp" android:textAllCaps="false"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" android:layout_gravity="center" android:layout_marginTop="32dp">
+                <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <Button android:layout_width="match_parent" android:layout_height="match_parent"
+                            android:id="@+id/button_camera" android:backgroundTint="@null"
+                            android:backgroundTintMode="@null" android:background="@drawable/button_3"></Button>
+                    <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp" app:srcCompat="@mipmap/camara"
+                            android:id="@+id/imageView15"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <TextView
+                    android:text="Cambia de foto..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView2" android:textSize="20dp"
+                    android:layout_gravity="center"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

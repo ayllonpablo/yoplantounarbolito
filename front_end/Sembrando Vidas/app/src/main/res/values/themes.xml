@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.YoPlantoUnArbolito_App" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryVariant">#020305</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+         <!--Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+         <!--Customize your theme here.-->
+        <item name="android:textViewStyle">@style/textView1</item>
+    </style>
+
+    <style name="textView1" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textColor">@color/orange_primary</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/poppins_light</item>
+    </style>
+    <style name="textView2" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textColor">@color/green_secondary</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/poppins_light</item>
+    </style>
+    <style name="textView3" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textColor">@color/green_secondary</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:fontFamily">@font/poppins_light</item>
+    </style>
+
+</resources>

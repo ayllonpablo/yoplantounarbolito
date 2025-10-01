@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="app.sembrando.vidas.LoginActivity"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:fillViewport="true">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+        >
+            <ImageView
+                    android:layout_height="300dp" app:srcCompat="@mipmap/mano_portada"
+                    android:id="@+id/imageView2"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+            />
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:backgroundTint="@null"
+                    android:background="@color/blue_secondary" android:id="@+id/linear_progres_2"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="vertical" android:padding="16dp">
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopEnd="50dp"
+                        app:boxCornerRadiusTopStart="50dp"
+                        app:boxCornerRadiusBottomStart="50dp"
+                        app:boxCornerRadiusBottomEnd="50dp"
+                        android:hint="Nombre de usuario"
+                        app:counterEnabled="true"
+                        app:boxBackgroundColor="#00FFFFFF"
+                        app:counterMaxLength="50">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/editTextEmailLogin" android:textColorHint="#606060"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopEnd="50dp"
+                        app:boxCornerRadiusTopStart="50dp"
+                        app:boxCornerRadiusBottomStart="50dp"
+                        app:boxCornerRadiusBottomEnd="50dp"
+                        android:hint="Contraseña"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="50"
+                        app:boxBackgroundColor="#00FFFFFF"
+                        app:endIconMode="password_toggle">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/editTextPasswordLogin"
+                            android:inputType="textPassword"
+                            android:textColorHint="#606060"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton
+                        android:onClick="OnclickLogin"
+                        android:text="Ingresar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/buttonLogin"
+                        android:background="@drawable/button_1"
+                        app:backgroundTint="@null" android:padding="16dp" android:textAllCaps="false"/>
+
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp">
+                <com.google.android.material.button.MaterialButton
+                        android:onClick="OnclickGoToRegisterActivity"
+                        android:text="Regístrate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/buttonRegisterActivity"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginBottom="32dp"
+                        app:backgroundTint="@null"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp" android:padding="16dp" android:background="@drawable/button_2"
+                        android:textColor="#4CAF50"/>
+                <TextView
+                        android:text="Si aún no tienes una cuenta."
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView3"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonRegisterActivity"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginBottom="16dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

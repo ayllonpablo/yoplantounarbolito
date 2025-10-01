@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="app.sembrando.vidas.TreeCareActivity"
+        android:orientation="vertical">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp" app:srcCompat="@mipmap/logo"
+                    android:layout_gravity="center"
+                    android:id="@+id/imageView9" android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp" app:autoSizeTextType="uniform"/>
+            <TextView
+                    android:text="hola lilian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/text_hola"
+                    android:layout_marginLeft="44dp"
+                    android:fontFamily="@font/poppins_light"
+                    app:autoSizeTextType="uniform" android:layout_marginRight="44dp"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_marginLeft="44dp"
+                    android:layout_marginRight="44dp">
+                <TextView
+                        android:text="tienes "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/green_tertiary"
+                        android:fontFamily="@font/poppins_light" android:textSize="20dp"/>
+                <TextView
+                        android:text="25 puntos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/text_points"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="20dp"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp" android:textColor="#19824E"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="44dp" android:layout_marginRight="44dp"
+                    android:background="@drawable/backgroun_black_ligth_two" android:padding="16dp"
+                    android:layout_marginTop="16dp">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                    <ImageView
+                            android:layout_width="75dp"
+                            android:layout_height="75dp" app:srcCompat="@mipmap/hoja"
+                            android:layout_gravity="center"
+                    />
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="32dp">
+                        <TextView
+                                android:text="nombre:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:id="@+id/textView15"
+                                android:textColor="@color/green_primary"
+                                android:fontFamily="@font/poppins_bold" android:textSize="14dp"/>
+                        <TextView
+                                android:text="Sauce Lloron test largo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:id="@+id/textView16"
+                                android:textSize="20dp" android:textColor="@color/green_tertiary"
+                        />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginLeft="44dp"
+                    android:layout_marginRight="44dp" android:layout_marginTop="24dp">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_ligth"
+                            android:layout_weight="1"
+                            android:layout_marginRight="8dp">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                            <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" android:paddingTop="24dp"
+                                    android:paddingBottom="24dp">
+                                <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp" app:srcCompat="@mipmap/regadera"
+                                        android:id="@+id/imageView10" android:layout_gravity="center"/>
+                                <TextView
+                                        android:text="Regar"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/textView14"
+                                        android:layout_gravity="center" android:fontFamily="@font/poppins_bold"/>
+                            </LinearLayout>
+                            <Button android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:background="@drawable/button_3"
+                                    android:id="@+id/button_regar" android:backgroundTint="@null"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_ligth"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="8dp">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                            <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" android:paddingTop="24dp"
+                                    android:paddingBottom="24dp">
+                                <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp" app:srcCompat="@mipmap/limpieza"
+                                        android:id="@+id/imageView11" android:layout_gravity="center"/>
+                                <TextView
+                                        android:text="Limpieza"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/textView17"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/poppins_bold"/>
+                            </LinearLayout>
+                            <Button android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:background="@drawable/button_3"
+                                    android:id="@+id/button_limpiar" android:backgroundTint="@null"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="16dp">
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp" android:background="@drawable/border_ligth"
+                            android:layout_weight="1">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                            <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" android:paddingTop="24dp"
+                                    android:paddingBottom="24dp">
+                                <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp" app:srcCompat="@mipmap/abono"
+                                        android:id="@+id/imageView160" android:layout_gravity="center"/>
+                                <TextView
+                                        android:text="Abono"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/textVhiew14"
+                                        android:layout_gravity="center" android:fontFamily="@font/poppins_bold"/>
+                            </LinearLayout>
+                            <Button android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:background="@drawable/button_3"
+                                    android:id="@+id/button_abonar" android:backgroundTint="@null"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_ligth"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="8dp">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                            <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" android:paddingTop="24dp"
+                                    android:paddingBottom="24dp">
+                                <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp" app:srcCompat="@mipmap/agarre"
+                                        android:id="@+id/imageVihjew11" android:layout_gravity="center"/>
+                                <TextView
+                                        android:text="Agarre"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/textVighew17"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/poppins_bold"/>
+                            </LinearLayout>
+                            <Button android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:background="@drawable/button_3"
+                                    android:id="@+id/button_establecido" android:backgroundTint="@null"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          app:layout_constraintTop_toBottomOf="@+id/imageView"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintStart_toStartOf="parent"
+                          android:id="@+id/linearLayout2" android:layout_margin="32dp"
+                          android:layout_gravity="center">
+                <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="30dp" app:srcCompat="@mipmap/cbn_logo"
+                        android:id="@+id/imageView8"
+                        tools:layout_editor_absoluteX="59dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                        android:layout_gravity="bottom" android:layout_marginLeft="16dp"/>
+                <ImageView
+                        android:layout_width="110dp"
+                        android:layout_height="50dp" app:srcCompat="@mipmap/boa_logo"
+                        android:id="@+id/imageView7"
+                        tools:layout_editor_absoluteX="223dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                        android:layout_marginTop="12dp"
+                        android:layout_gravity="bottom" android:layout_marginRight="16dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

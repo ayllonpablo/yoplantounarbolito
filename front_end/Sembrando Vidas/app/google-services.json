@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "561093225778",
+    "project_id": "sembrando-vidas",
+    "storage_bucket": "sembrando-vidas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561093225778:android:87fd78a63b505b5d2cbb2b",
+        "android_client_info": {
+          "package_name": "app.sembrando.vidas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561093225778-fn16lli4sust57bke7006jlbtm4ofvii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgbNoJIHGovi-RQHuUVPQqYl4TzMSfaSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561093225778-fn16lli4sust57bke7006jlbtm4ofvii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

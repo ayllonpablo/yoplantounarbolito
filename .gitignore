@@ -1,0 +1,41 @@
+# Laravel
+backend/yoPlantoUnArbolito/vendor/
+backend/yoPlantoUnArbolito/.env
+backend/yoPlantoUnArbolito/storage/*.key
+backend/yoPlantoUnArbolito/storage/logs/
+backend/yoPlantoUnArbolito/storage/framework/cache/
+backend/yoPlantoUnArbolito/storage/framework/sessions/
+backend/yoPlantoUnArbolito/storage/framework/views/
+backend/yoPlantoUnArbolito/bootstrap/cache/
+backend/yoPlantoUnArbolito/node_modules/
+backend/yoPlantoUnArbolito/public/hot
+backend/yoPlantoUnArbolito/public/storage
+
+# Android
+front_end/Sembrando Vidas/.gradle/
+front_end/Sembrando Vidas/.idea/
+front_end/Sembrando Vidas/local.properties
+front_end/Sembrando Vidas/build/
+front_end/Sembrando Vidas/app/build/
+front_end/Sembrando Vidas/*.iml
+front_end/Sembrando Vidas/.DS_Store
+front_end/Sembrando Vidas/captures/
+front_end/Sembrando Vidas/.externalNativeBuild
+front_end/Sembrando Vidas/.cxx
+
+# IDE
+.idea/
+.vscode/
+.claude/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+.~lock*
+*.Zone.Identifier

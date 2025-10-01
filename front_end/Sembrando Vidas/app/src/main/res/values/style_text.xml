@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="text_1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#3C4557</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/be_vietnam</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:hint">ponga su name</item>
+    </style>
+    <style name="text_2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/bungee_inline</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text_3" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/be_vietnam</item>
+    </style>
+    <style name="button_style_1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/be_vietnam</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
