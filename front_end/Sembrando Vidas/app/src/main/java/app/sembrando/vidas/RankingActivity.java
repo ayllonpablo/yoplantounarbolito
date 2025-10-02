@@ -52,7 +52,7 @@ public class RankingActivity extends AppCompatActivity {
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         list_item_ranking = new ArrayList<>();
-        getRanking();
+        // getRanking() is called in onResume() to handle both initial load and refresh
 
     }
 
