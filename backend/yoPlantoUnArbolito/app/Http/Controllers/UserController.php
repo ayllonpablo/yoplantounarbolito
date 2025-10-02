@@ -10,23 +10,37 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::query()
-            ->allowedIncludes(['trees'])
-            ->allowedFilters([])
-            ->allowedSorts(['points'])
-            ->sparseFieldset()
-            ->allowLimit();
+        $query = User::query();
 
-        return UserResource::collection($users->get());
+        // Handle includes
+        if ($request->has('include') && $request->input('include') === 'trees') {
+            $query->with('trees');
+        }
+
+        // Handle sorting
+        if ($request->has('sort')) {
+            $sortField = ltrim($request->input('sort'), '-');
+            $sortDirection = str_starts_with($request->input('sort'), '-') ? 'desc' : 'asc';
+            $query->orderBy($sortField, $sortDirection);
+        }
+
+        $users = $query->get();
+
+        return UserResource::collection($users);
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $user = User::where('id', $id)
-            ->allowedIncludes(['trees'])
-            ->firstOrFail();
+        $query = User::where('id', $id);
+
+        // Handle includes
+        if ($request->has('include') && $request->input('include') === 'trees') {
+            $query->with('trees');
+        }
+
+        $user = $query->firstOrFail();
 
         return UserResource::make($user);
     }
