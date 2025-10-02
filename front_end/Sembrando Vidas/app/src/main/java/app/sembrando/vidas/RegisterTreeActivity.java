@@ -132,8 +132,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
-                headers.put("Content-Type", "application/vnd.api+json");
+                headers.put("Accept", "application/json");
+                headers.put("Content-Type", "application/json");
                 headers.put("Authorization", "Bearer " + preferences.getToken());
                 return headers;
             }

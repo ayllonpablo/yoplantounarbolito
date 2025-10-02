@@ -112,7 +112,7 @@ public class RankingActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Accept", "application/json");
                 headers.put("Authorization", "Bearer " + preference.getToken());
                 return headers;
             }

@@ -209,7 +209,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Accept", "application/json");
                 headers.put("Authorization", "Bearer " + preferences.getToken());
                 return headers;
             }
@@ -287,7 +287,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Accept", "application/json");
                 headers.put("Authorization", "Bearer " + preferences.getToken());
                 return headers;
             }
