@@ -89,8 +89,6 @@ public class RankingActivity extends AppCompatActivity {
                                         j += 1;
                                         if(j == 50) break;
                                         list_item_ranking.add(new Ranking(j,name, name_tree, points + " puntos", showAvatar(avatar)));
-                                        AdapterDates adapter_dates = new AdapterDates(list_item_ranking);
-                                        recyclerView.setAdapter(adapter_dates);
                                     }
                                 }
                             }
@@ -98,6 +96,11 @@ public class RankingActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         Toast.makeText(RankingActivity.this,"ocurrio un error",Toast.LENGTH_SHORT).show();
                     }
+                }
+                // Set adapter only once after all data is loaded
+                if (!list_item_ranking.isEmpty()) {
+                    AdapterDates adapter_dates = new AdapterDates(list_item_ranking);
+                    recyclerView.setAdapter(adapter_dates);
                 }
             }
         }, new Response.ErrorListener() {
