@@ -43,9 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     Preferences preferences;
 
     //buttons
-    Button button_log_out, button_your_tree, button_orphanage,
-            button_ranking, button_games, button_profile, button_register_tree,
-            button_edit_tree, button_edit_user;
+    Button button_log_out, button_your_tree, button_register_tree;
+    androidx.cardview.widget.CardView card_ranking, card_edit_tree, card_edit_user, card_profile;
     ImageView image_home_avatar;
 
     //datos de Usuario
@@ -62,6 +61,8 @@ public class HomeActivity extends AppCompatActivity {
     //layout
     LinearLayout linear_layout_create_tree;
     LinearLayout linear_layout_care_tree;
+    androidx.cardview.widget.CardView card_crea_arbol;
+    androidx.cardview.widget.CardView card_cuida_arbolito;
 
     //validaciones
     Validations validations;
@@ -92,18 +93,25 @@ public class HomeActivity extends AppCompatActivity {
 
         //buttons
         button_your_tree = findViewById(R.id.button_home_your_tree);
-        button_ranking = findViewById(R.id.button_home_ranking);
-        button_profile = findViewById(R.id.button_home_profile);
         button_register_tree = findViewById(R.id.button_home_register_tree);
         button_log_out = findViewById(R.id.button_home_log_out);
-        button_edit_tree = findViewById(R.id.button_home_edit_tree);
-        button_edit_user = findViewById(R.id.button_home_edit_user);
+
+        //cards
+        card_ranking = findViewById(R.id.card_ranking);
+        card_edit_tree = findViewById(R.id.card_edit_tree);
+        card_edit_user = findViewById(R.id.card_edit_user);
+        card_profile = findViewById(R.id.card_profile);
 
         //avatar o boton
         linear_layout_care_tree = findViewById(R.id.linear_layout_cuida_tu_arbol);
         linear_layout_create_tree = findViewById(R.id.linear_layout_crea_tu_arbol);
+        card_crea_arbol = findViewById(R.id.card_crea_arbol);
+        card_cuida_arbolito = findViewById(R.id.card_cuida_arbolito);
+
         linear_layout_care_tree.setVisibility(View.GONE);
         linear_layout_create_tree.setVisibility(View.GONE);
+        card_crea_arbol.setVisibility(View.GONE);
+        card_cuida_arbolito.setVisibility(View.GONE);
 
 
         button_your_tree.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        button_ranking.setOnClickListener(new View.OnClickListener() {
+        card_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 linear_progress.setVisibility(View.VISIBLE);
@@ -125,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
                 linear_progress.setVisibility(View.GONE);
             }
         });
-        button_profile.setOnClickListener(new View.OnClickListener() {
+        card_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*Intent profileUser = new Intent(getApplicationContext(), UserProfileActivity.class);
@@ -152,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
                 logOut();
             }
         });
-        button_edit_tree.setOnClickListener(new View.OnClickListener() {
+        card_edit_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 linear_progress.setVisibility(View.VISIBLE);
@@ -162,7 +170,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        button_edit_user.setOnClickListener(new View.OnClickListener() {
+        card_edit_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 linear_progress.setVisibility(View.VISIBLE);
@@ -268,10 +276,14 @@ public class HomeActivity extends AppCompatActivity {
                         tree.setName(tree_object.getString(tree_database.getName()));
                         image_home_avatar.setImageResource(showAvatar(tree_object.getString(tree_database.getAvatar())));
                         linear_layout_care_tree.setVisibility(View.VISIBLE);
+                        card_cuida_arbolito.setVisibility(View.VISIBLE);
                         linear_layout_create_tree.setVisibility(View.GONE);
+                        card_crea_arbol.setVisibility(View.GONE);
                     } else{
                         linear_layout_care_tree.setVisibility(View.GONE);
+                        card_cuida_arbolito.setVisibility(View.GONE);
                         linear_layout_create_tree.setVisibility(View.VISIBLE);
+                        card_crea_arbol.setVisibility(View.VISIBLE);
                     }
                 } catch (JSONException e) {
                     Toast.makeText(HomeActivity.this, "Se produjo un error:", Toast.LENGTH_SHORT).show();
@@ -297,7 +309,9 @@ public class HomeActivity extends AppCompatActivity {
     public int showAvatar(String avatar){
         int res = 0;
         switch (avatar){
-
+            case "avatar1":
+                res = R.mipmap.hoja;
+                break;
             case "avatar2":
                 res = R.mipmap.brote_feliz;
                 break;

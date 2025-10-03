@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -48,7 +49,10 @@ public class TreeCareActivity extends AppCompatActivity {
     Button button_regar, button_limpiar, button_abonar, button_establecido;
 
     //textView
-    TextView text_hola, text_points;
+    TextView text_hola, text_points, text_tree_name;
+
+    //ImageView
+    ImageView image_tree_avatar;
 
     //preferencias
     Preferences preferences;
@@ -81,10 +85,15 @@ public class TreeCareActivity extends AppCompatActivity {
         url = variables.getUrl();
         text_hola = findViewById(R.id.text_hola);
         text_points = findViewById(R.id.text_points);
+        text_tree_name = findViewById(R.id.textView16);
+        image_tree_avatar = findViewById(R.id.image_tree_avatar);
         preferences = new Preferences(TreeCareActivity.this);
-        text_hola.setText("hola "+preferences.getName());
+        text_hola.setText("Hola "+preferences.getName());
         text_points.setText(preferences.getPoints() + " Puntos");
         puntos = Integer.parseInt(preferences.getPoints());
+
+        // Cargar información del árbol
+        loadTreeInfo();
 
         //Toast.makeText(TreeCareActivity.this, "Id de arbol en preferencia:"+preferences.getTreeId(), Toast.LENGTH_SHORT).show();
         //Toast.makeText(TreeCareActivity.this, "Id de user en preferencia:"+preferences.getUserId(), Toast.LENGTH_SHORT).show();
@@ -221,5 +230,86 @@ public class TreeCareActivity extends AppCompatActivity {
             updateUbication(location);
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0 , locationListener);
+    }
+
+    private void loadTreeInfo() {
+        String treeId = preferences.getTreeId();
+        if (treeId == null || treeId.isEmpty()) {
+            text_tree_name.setText("Sin árbol");
+            return;
+        }
+
+        request = Volley.newRequestQueue(this);
+
+        JOR = new JsonObjectRequest(Request.Method.GET, url + "/trees/" + treeId, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String treeName = response.getString("name");
+                    text_tree_name.setText(treeName);
+
+                    // Cargar avatar del árbol
+                    String avatar = response.getString("avatar");
+                    setTreeAvatar(avatar);
+                } catch (JSONException e) {
+                    text_tree_name.setText("Mi árbol");
+                    Log.e("TreeCareActivity", "Error parsing tree data: " + e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                text_tree_name.setText("Mi árbol");
+                Log.e("TreeCareActivity", "Error loading tree info: " + error.toString());
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/json");
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + preferences.getToken());
+                return headers;
+            }
+        };
+        request.add(JOR);
+    }
+
+    private void setTreeAvatar(String avatarName) {
+        // Mapear el nombre del avatar al recurso mipmap
+        int avatarResource = R.mipmap.hoja; // Default (avatar1)
+
+        if (avatarName != null) {
+            switch (avatarName.toLowerCase()) {
+                case "avatar1":
+                case "hoja":
+                    avatarResource = R.mipmap.hoja;
+                    break;
+                case "avatar2":
+                case "brote_feliz":
+                case "brote":
+                    avatarResource = R.mipmap.brote_feliz;
+                    break;
+                case "avatar3":
+                case "arbolito_feliz":
+                case "arbolito":
+                    avatarResource = R.mipmap.arbolito_feliz;
+                    break;
+                case "avatar4":
+                case "maceta_femenina":
+                    avatarResource = R.mipmap.maceta_femenina;
+                    break;
+                case "avatar5":
+                case "maseta_masculino":
+                case "maceta_masculino":
+                    avatarResource = R.mipmap.maseta_masculino;
+                    break;
+                default:
+                    Log.w("TreeCareActivity", "Avatar desconocido: " + avatarName + ", usando hoja por defecto");
+                    break;
+            }
+        }
+
+        image_tree_avatar.setImageResource(avatarResource);
     }
 }

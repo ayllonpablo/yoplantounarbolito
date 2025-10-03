@@ -11,191 +11,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The app allows users to register trees, adopt them, track care actions, and compete in rankings for environmental conservation.
 
-## Mobile Development Best Practices
-
-### Architecture Patterns
-
-**Current Architecture:**
-- Activity-based architecture with direct API calls via Volley
-- SharedPreferences for token persistence
-- No separation between business logic and UI
-
-**Recommended Migration: MVVM (Model-View-ViewModel)**
-
-Benefits for this project:
-- **Separation of Concerns**: UI logic separate from business logic
-- **Testability**: ViewModels can be unit tested without Android framework dependencies
-- **Lifecycle Awareness**: Automatic handling of configuration changes
-- **Reactive Data**: LiveData/Flow for automatic UI updates
-
-Implementation approach:
-```
-├── data/
-│   ├── repository/          # Data access layer
-│   ├── remote/             # API service interfaces
-│   └── model/              # Data models
-├── domain/
-│   └── usecase/            # Business logic
-├── presentation/
-│   ├── viewmodel/          # ViewModels
-│   └── ui/                 # Activities/Fragments
-└── di/                     # Dependency injection
-```
-
-**Alternative: Clean Architecture**
-- More suitable for larger-scale projects
-- Three layers: Presentation → Domain → Data
-- Higher initial complexity but better long-term maintainability
-
-### Security Patterns
-
-**Current Implementation:**
-- Sanctum token-based authentication
-- Tokens stored in SharedPreferences
-
-**Security Improvements Needed:**
-
-1. **Secure Token Storage**
-   - Use Android KeyStore for token encryption
-   - Implement EncryptedSharedPreferences (AndroidX Security library)
-   ```java
-   // Recommended approach
-   EncryptedSharedPreferences.create(
-       context,
-       "secure_prefs",
-       masterKey,
-       EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-       EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-   );
-   ```
-
-2. **Network Security**
-   - Add network security configuration (`network_security_config.xml`)
-   - Implement certificate pinning for production
-   - Use HTTPS only in production
-   - Current development uses HTTP (acceptable for local testing only)
-
-3. **Input Validation**
-   - Client-side validation before API calls (currently missing)
-   - Sanitize user inputs to prevent injection attacks
-   - Validate email format, password strength, field lengths
-
-4. **API Security**
-   - Implement request signing for critical operations
-   - Add rate limiting on backend
-   - Use refresh tokens for long-lived sessions
-   - Implement token expiration handling
-
-### Performance Optimization
-
-**Network Layer:**
-
-Current implementation uses Volley, which is good for simple requests. Consider:
-
-1. **Request Optimization**
-   - Implement request caching for read-only data (tree listings, user profiles)
-   - Use ETag/Last-Modified headers for conditional requests
-   - Batch API calls where possible
-   - Add request timeout configuration
-
-2. **Image Loading** (for tree photos)
-   - Implement image caching (Glide or Coil recommended)
-   - Use WebP format for smaller file sizes
-   - Implement progressive loading
-   - Add placeholder and error images
-
-3. **Database Layer**
-   - Add Room database for offline-first architecture
-   - Cache tree data locally
-   - Implement sync mechanism with backend
-   - Use pagination for large datasets
-
-**UI Performance:**
-
-1. **RecyclerView Optimization**
-   - Use ViewHolder pattern (already using RecyclerView)
-   - Implement DiffUtil for efficient updates
-   - Add pagination for tree lists
-   - Use ConstraintLayout for complex layouts
-
-2. **Memory Management**
-   - Avoid memory leaks from Activity context in async operations
-   - Use WeakReference for callbacks if needed
-   - Implement proper lifecycle management
-   - Clear resources in onDestroy()
-
-3. **Background Processing**
-   - Use WorkManager for reliable background tasks (location tracking, photo uploads)
-   - Implement Coroutines or RxJava for async operations
-   - Avoid blocking main thread with network calls
-
-### Testing Strategy
-
-**Unit Testing:**
-```
-tests/
-├── unit/
-│   ├── viewmodel/      # ViewModel logic tests
-│   ├── repository/     # Repository tests with mocked API
-│   └── usecase/        # Business logic tests
-└── integration/
-    └── api/            # API integration tests
-```
-
-**Recommended Testing Tools:**
-- JUnit 4/5 for unit tests
-- Mockito for mocking
-- MockWebServer for API testing
-- Espresso for UI tests
-- Robolectric for Android components
-
-**Backend Testing:**
-- PHPUnit for Laravel tests (already configured)
-- Feature tests for API endpoints
-- Database tests with SQLite in-memory
-
-### Code Quality Patterns
-
-**Dependency Injection:**
-
-Current: Manual dependency creation in Activities
-
-Recommended:
-- Hilt/Dagger for dependency injection
-- Reduces boilerplate
-- Improves testability
-- Manages object lifecycle
-
-**Error Handling:**
-
-Current: `Validations.java` centralized error handling (good start)
-
-Improvements:
-- Implement sealed classes/enums for API result states (Success, Error, Loading)
-- Use custom exceptions for different error types
-- Add error logging and crash reporting (Firebase Crashlytics)
-- Implement user-friendly error messages
-
-**Code Organization:**
-
-```
-app/src/main/java/app/sembrando/vidas/
-├── data/
-│   ├── api/              # API interfaces and implementations
-│   ├── model/            # Data models
-│   ├── repository/       # Repository pattern
-│   └── local/            # Room database
-├── domain/
-│   ├── model/            # Domain models
-│   └── usecase/          # Business logic
-├── presentation/
-│   ├── common/           # Shared UI components
-│   ├── login/            # Feature: Login
-│   ├── home/             # Feature: Home
-│   └── tree/             # Feature: Tree management
-└── util/                 # Utilities and extensions
-```
-
 ## Architecture
 
 ### Backend (Laravel API)
@@ -258,9 +73,6 @@ app/src/main/java/app/sembrando/vidas/
 - Content-Type headers use `application/vnd.api+json` but backend expects `application/json`
 - No input validation before API calls
 - Network errors can cause NullPointerException if not handled (fixed in Validations.java)
-- Tokens stored in plain SharedPreferences (should use EncryptedSharedPreferences)
-- No offline support or local caching
-- No loading states during API calls
 
 ## Development Commands
 
@@ -313,9 +125,6 @@ cd "front_end/Sembrando Vidas"
 
 # Check for dependency updates
 ./gradlew dependencyUpdates
-
-# Run lint checks
-./gradlew lint
 ```
 
 ### Android Testing with Emulator
@@ -438,11 +247,6 @@ Password: password
 - Check JDK version compatibility (Java 8 required)
 - Run `./gradlew clean` if encountering cache issues
 
-**Network security exceptions (API Level 28+):**
-- Android 9+ blocks cleartext HTTP by default
-- Add `android:usesCleartextTraffic="true"` to AndroidManifest.xml for development
-- For production, use HTTPS and implement network security config
-
 ## Project-Specific Conventions
 
 **API Request Headers (Backend expects):**
@@ -466,30 +270,3 @@ Always check if `VolleyError.networkResponse` is null before accessing `.data` t
 **Tree Care Action Types:**
 Defined in Variables.java: PLANTAR, REGAR, LIMPIEZA, ABONO, AGARRE, JUEGOS
 
-## Recommended Next Steps
-
-### Priority 1: Critical Fixes
-1. Fix Content-Type headers in LoginActivity and RegisterUserActivity to use `application/json`
-2. Implement input validation for all forms (email format, password length, required fields)
-3. Add proper loading states with progress indicators
-4. Implement secure token storage with EncryptedSharedPreferences
-
-### Priority 2: Architecture Improvements
-1. Migrate to MVVM architecture starting with LoginActivity
-2. Implement Repository pattern for API calls
-3. Add Room database for offline support
-4. Introduce dependency injection with Hilt
-
-### Priority 3: Feature Enhancements
-1. Add image caching for tree photos (Glide/Coil)
-2. Implement pagination for tree lists
-3. Add offline mode with local database sync
-4. Implement push notification handling
-5. Add proper error logging and crash reporting
-
-### Priority 4: Testing & Quality
-1. Add unit tests for ViewModels and repositories
-2. Implement integration tests for API calls
-3. Add UI tests with Espresso
-4. Set up CI/CD pipeline
-5. Add code coverage reporting

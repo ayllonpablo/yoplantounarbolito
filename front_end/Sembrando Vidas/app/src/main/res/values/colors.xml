@@ -16,4 +16,12 @@
     <color name="blue_secondary">#338DDD</color>#43C27D
 
     <color name="purple_200">#673AB7</color>
+
+    <!-- Bosquecito Urbano Theme Colors -->
+    <color name="beige_background">#EDE9DC</color>
+    <color name="dark_green">#2C5F3D</color>
+    <color name="card_white">#FFFFFF</color>
+    <color name="text_brown">#8B7355</color>
+    <color name="text_green_light">#6B8E6F</color>
+    <color name="card_green_light">#E8F5E9</color>
 </resources>
