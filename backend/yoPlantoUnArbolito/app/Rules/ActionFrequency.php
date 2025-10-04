@@ -49,7 +49,7 @@ class ActionFrequency implements Rule
 
             if (!$actionIsPossible) {
                 $daysRequired = Params::ACTION_FREQUENCY[$value];
-                $availableDate = $prevAction->createdAt->addDays($daysRequired)->format('Y-m-d');
+                $availableDate = $prevAction->createdAt->addDays($daysRequired)->format('d/m/Y');
                 $this->message = "La acción '{$value}' estará disponible el {$availableDate}";
             }
 
