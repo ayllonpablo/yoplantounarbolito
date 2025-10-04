@@ -16,7 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import app.sembrando.vidas.classes.Tree;
 import app.sembrando.vidas.classes.TreeUser;
 import app.sembrando.vidas.dataBasesInterfaz.TreeDatabase;
@@ -42,7 +44,7 @@ import java.util.Map;
 public class RegisterTreeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     //Components
-    EditText name;
+    com.google.android.material.textfield.TextInputEditText name;
     Validations validations = new Validations();
 
 
@@ -68,6 +70,9 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     private GoogleMap mMap;
     private Marker marcador;
 
+    //Avatar Cards
+    CardView cardAvatar1, cardAvatar2, cardAvatar3, cardAvatar4, cardAvatar5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +90,13 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         mapFragment.getMapAsync(this);
 
         name = findViewById(R.id.editTextNameRegisterTree);
+
+        // Initialize avatar cards
+        cardAvatar1 = findViewById(R.id.cardAvatar1);
+        cardAvatar2 = findViewById(R.id.cardAvatar2);
+        cardAvatar3 = findViewById(R.id.cardAvatar3);
+        cardAvatar4 = findViewById(R.id.cardAvatar4);
+        cardAvatar5 = findViewById(R.id.cardAvatar5);
 
         buton_register_tree.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,26 +202,45 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0 , locationListener);
     }
 
+    private void resetAvatarBackgrounds() {
+        int defaultColor = ContextCompat.getColor(this, R.color.card_green_light);
+        cardAvatar1.setCardBackgroundColor(defaultColor);
+        cardAvatar2.setCardBackgroundColor(defaultColor);
+        cardAvatar3.setCardBackgroundColor(defaultColor);
+        cardAvatar4.setCardBackgroundColor(defaultColor);
+        cardAvatar5.setCardBackgroundColor(defaultColor);
+    }
+
     public void OnclickSelectAvatar1(View view) {
         tree.setAvatar("avatar1");
+        resetAvatarBackgrounds();
+        cardAvatar1.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar2(View view) {
         tree.setAvatar("avatar2");
+        resetAvatarBackgrounds();
+        cardAvatar2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar3(View view) {
         tree.setAvatar("avatar3");
+        resetAvatarBackgrounds();
+        cardAvatar3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
     public void OnclickSelectAvatar4(View view) {
         tree.setAvatar("avatar4");
+        resetAvatarBackgrounds();
+        cardAvatar4.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
     public void OnclickSelectAvatar5(View view) {
         tree.setAvatar("avatar5");
+        resetAvatarBackgrounds();
+        cardAvatar5.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 

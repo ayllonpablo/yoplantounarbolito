@@ -17,17 +17,63 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
-        <!-- Logo Bosquecito Urbano -->
-        <ImageView
-            android:id="@+id/logo_bosquecito"
+        <!-- Header con botón home y logo -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:scaleType="fitCenter"
-            android:contentDescription="Logo de Bosquecito Urbano"
-            app:srcCompat="@mipmap/logo_bosquecito"/>
+            android:layout_marginBottom="8dp">
+
+            <!-- Botón Home Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_home_tree_care"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/icono_home"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Icono de inicio"
+                        android:layout_marginBottom="2dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Home"
+                        android:textSize="10sp"
+                        android:textColor="@color/dark_green"
+                        android:fontFamily="@font/poppins_bold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Logo Bosquecito Urbano -->
+            <ImageView
+                android:id="@+id/logo_bosquecito"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:contentDescription="Logo de Bosquecito Urbano"
+                app:srcCompat="@mipmap/logo_bosquecito"/>
+        </RelativeLayout>
 
         <!-- Saludo personalizado -->
         <TextView

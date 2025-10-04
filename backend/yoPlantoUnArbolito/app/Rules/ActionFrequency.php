@@ -47,7 +47,12 @@ class ActionFrequency implements Rule
             $daysPastCurrently = $prevAction->createdAt->diffInDays(now());
             $actionIsPossible = $daysPastCurrently >= Params::ACTION_FREQUENCY[$value];
 
-            $this->message = 'Todavía no es posible realizar esa acción.';
+            if (!$actionIsPossible) {
+                $daysRequired = Params::ACTION_FREQUENCY[$value];
+                $availableDate = $prevAction->createdAt->addDays($daysRequired)->format('Y-m-d');
+                $this->message = "La acción '{$value}' estará disponible el {$availableDate}";
+            }
+
             return $actionIsPossible;
         }
 

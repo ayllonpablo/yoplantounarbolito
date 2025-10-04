@@ -14,11 +14,11 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $validated = Validator::make($request->all(), [
-            'firstname' => ['required', 'string', 'min:5', 'max:100'],
-            'lastname' => ['required', 'string', 'min:5', 'max:100'],
+            'firstname' => ['required', 'string', 'max:100'],
+            'lastname' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email:rfc,dns', 'unique:users,email'],
             'age' => ['required', 'integer', 'min:1'],
-            'organization' => ['nullable', 'string', 'min:5', 'max:50'],
+            'organization' => ['nullable', 'string', 'max:50'],
             'phone' => ['required', 'integer', 'digits_between:6,10'],
             'password' => ['required', 'confirmed', 'min:8', 'max:20']
         ], [], [
@@ -42,11 +42,11 @@ class RegisterController extends Controller
         $user = $request->user();
 
         $validated = Validator::make($request->all(), [
-            'firstname' => ['nullable', 'string', 'min:5', 'max:100'],
-            'lastname' => ['nullable', 'string', 'min:5', 'max:100'],
+            'firstname' => ['nullable', 'string', 'max:100'],
+            'lastname' => ['nullable', 'string', 'max:100'],
             'email' => ['nullable', 'email:rfc,dns', Rule::unique('users', 'email')->ignore($user->id)],
             'age' => ['integer', 'min:1'],
-            'organization' => ['nullable', 'string', 'min:5', 'max:50'],
+            'organization' => ['nullable', 'string', 'max:50'],
             'phone' => ['nullable', 'integer', 'digits_between:6,10'],
         ], [], [
             'firstname' => 'nombres',

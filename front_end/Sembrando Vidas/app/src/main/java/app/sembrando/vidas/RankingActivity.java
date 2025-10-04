@@ -1,9 +1,13 @@
 package app.sembrando.vidas;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import app.sembrando.vidas.classes.Ranking;
 import app.sembrando.vidas.dataBasesInterfaz.ActionDatabase;
@@ -49,11 +53,20 @@ public class RankingActivity extends AppCompatActivity {
         url = variables.getUrl();
         preference = new Preferences(RankingActivity.this);
         recyclerView = findViewById(R.id.recicler_ranking);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setLayoutManager(new GridLayoutManager(this,1));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         list_item_ranking = new ArrayList<>();
         // getRanking() is called in onResume() to handle both initial load and refresh
 
+        // Botón home
+        CardView buttonHome = findViewById(R.id.button_home_ranking);
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RankingActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -24,7 +24,7 @@ class StoreTreeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:5', 'max:50', 'unique:trees,name'],
+            'name' => ['required', 'string', 'max:50', 'unique:trees,name'],
             'lat' => ['required'],
             'lng' => ['required'],
             'avatar' => ['required'],

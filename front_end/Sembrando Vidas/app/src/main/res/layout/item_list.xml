@@ -1,78 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
 
-    <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/border_ligth" android:padding="16dp" android:paddingTop="32dp"
-            android:paddingBottom="32dp" android:paddingRight="8dp" android:paddingLeft="8dp"
-            android:layout_marginBottom="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Ranking badge (vertical: número arriba, texto abajo) -->
         <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:id="@+id/ranking_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="200dp" app:srcCompat="@mipmap/brote_feliz"
-                    android:layout_marginRight="8dp"
-                    android:padding="8dp" android:id="@+id/avatar_ranking"/>
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:id="@+id/id_item_indice"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textSize="24dp" android:layout_marginRight="8dp"
-                        android:textColor="@color/blue_primary" android:fontFamily="@font/poppins_bold"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nombre de Usuario:"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="@color/green_primary"
-                        android:fontFamily="@font/poppins_bold" android:textSize="14dp"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/id_item_name_user"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="@color/green_tertiary"
-                        android:textSize="20dp"/>
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Arbolito:"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="@color/green_primary"
-                        android:fontFamily="@font/poppins_bold" android:textSize="14dp" android:id="@+id/textView11"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/id_item_name_tree"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="@color/green_tertiary"
-                        android:textSize="18dp"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="puntos"
-                        android:id="@+id/id_item_points"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="@color/green_secondary"
-                        android:textSize="18dp" android:layout_gravity="right"/>
+            <TextView
+                android:id="@+id/id_item_indice"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:text="1"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:background="@drawable/circle_background"
+                android:backgroundTint="@color/dark_green"/>
 
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puesto"
+                android:textSize="10sp"
+                android:textColor="@color/text_brown"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginTop="2dp"/>
         </LinearLayout>
-    </LinearLayout>
+
+        <!-- Avatar del árbol -->
+        <ImageView
+            android:id="@+id/avatar_ranking"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Avatar del árbol"
+            app:srcCompat="@mipmap/brote_feliz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- Información del usuario -->
+        <LinearLayout
+            android:id="@+id/user_info_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/ranking_badge"
+            app:layout_constraintEnd_toStartOf="@id/avatar_ranking"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Usuario: "
+                android:textSize="14sp"
+                android:textColor="@color/dark_green"
+                android:fontFamily="@font/poppins_light"/>
+
+            <TextView
+                android:id="@+id/id_item_name_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nombre de Usuario"
+                android:textSize="14sp"
+                android:textColor="@color/text_brown"
+                android:fontFamily="@font/poppins_bold"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <!-- Nombre del árbol -->
+        <LinearLayout
+            android:id="@+id/tree_info_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@id/ranking_badge"
+            app:layout_constraintEnd_toStartOf="@id/avatar_ranking"
+            app:layout_constraintTop_toBottomOf="@id/user_info_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arbolito: "
+                android:textSize="14sp"
+                android:textColor="@color/dark_green"
+                android:fontFamily="@font/poppins_light"/>
+
+            <TextView
+                android:id="@+id/id_item_name_tree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mi árbol"
+                android:textSize="14sp"
+                android:textColor="@color/text_brown"
+                android:fontFamily="@font/poppins_light"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <!-- Puntos -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@id/ranking_badge"
+            app:layout_constraintTop_toBottomOf="@id/tree_info_layout"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/id_item_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="150"
+                android:textSize="18sp"
+                android:textColor="@color/green_primary"
+                android:fontFamily="@font/poppins_bold"/>
 
 
-</LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

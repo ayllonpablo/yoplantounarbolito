@@ -57,6 +57,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     ProgressBar loadPhoto;
     TextView textViewLoadPhoto;
     Preferences preferences;
+    LinearLayout placeholderContainer;
+    FrameLayout loadingOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +73,10 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         buttonSavePhoto = findViewById(com.example.yoplantounarbolito_app.R.id.button_save_photo);
         buttonSavePhoto.setVisibility(View.GONE);
         loadPhoto = findViewById(com.example.yoplantounarbolito_app.R.id.loadPhoto);
-        loadPhoto.setVisibility(View.GONE);
         textViewLoadPhoto = findViewById(R.id.textViewLoadPhoto);
-        textViewLoadPhoto.setVisibility(View.GONE);
+        placeholderContainer = findViewById(R.id.placeholderContainer);
+        loadingOverlay = findViewById(R.id.loadingOverlay);
+        loadingOverlay.setVisibility(View.GONE);
         preferences = new Preferences(RegisterPhotoActivity.this);
 
     }
@@ -172,6 +175,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(RegisterPhotoActivity.this.getContentResolver(), miPath);
                         if (imagen.getDrawable() != null){
+                            placeholderContainer.setVisibility(View.GONE);
                             buttonSavePhoto.setVisibility(View.VISIBLE);
                         }else{
                             buttonSavePhoto.setVisibility(View.GONE);
@@ -191,6 +195,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
                     bitmap= BitmapFactory.decodeFile(rutaImagen);
                     imagen.setImageBitmap(bitmap);
                     if (imagen.getDrawable() != null){
+                        placeholderContainer.setVisibility(View.GONE);
                         buttonSavePhoto.setVisibility(View.VISIBLE);
                     }else{
                         buttonSavePhoto.setVisibility(View.GONE);
@@ -206,28 +211,45 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         JsonObjectRequest JOR;
         request = Volley.newRequestQueue(this);
         String img = imgToString(bitmap);
+
+        Log.i("RegisterPhoto", "Tree ID: " + preferences.getTreeId());
+        Log.i("RegisterPhoto", "URL: " + url + "/savephoto/" + preferences.getTreeId());
+        Log.i("RegisterPhoto", "Image length: " + (img != null ? img.length() : "null"));
+
         Map<String, String> params = new HashMap<>();
         params.put("photo",img);
         JSONObject parameters = new JSONObject(params);
+
+        Log.i("RegisterPhoto", "JSON to send: " + parameters.toString());
+
         JOR = new JsonObjectRequest(Request.Method.PUT, url + "/savephoto/" + preferences.getTreeId(), parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                loadPhoto.setVisibility(View.GONE);
-                textViewLoadPhoto.setVisibility(View.GONE);
+                loadingOverlay.setVisibility(View.GONE);
                 finishAffinity ();
                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                Toast.makeText(RegisterPhotoActivity.this,"Cambio exitoso",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterPhotoActivity.this,"¡Fotografía guardada exitosamente!",Toast.LENGTH_SHORT).show();
                 startActivity(mainActivity);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                loadPhoto.setVisibility(View.GONE);
-                textViewLoadPhoto.setVisibility(View.GONE);
+                loadingOverlay.setVisibility(View.GONE);
                 buttonSavePhoto.setEnabled(true);
                 buttonLoad.setEnabled(true);
-                validations.showDialog("No se pudo registrar la fotografía, tome otra fotografía o intente despues.",
-                                            RegisterPhotoActivity.this);
+
+                // Log detallado del error
+                String errorMessage = "No se pudo registrar la fotografía. Por favor, intenta nuevamente.";
+                if (error.networkResponse != null) {
+                    Log.e("RegisterPhoto", "Error Code: " + error.networkResponse.statusCode);
+                    Log.e("RegisterPhoto", "Error Data: " + new String(error.networkResponse.data));
+
+                    // Usar el sistema de validación para mostrar error más específico
+                    validations.errors(error, RegisterPhotoActivity.this);
+                } else {
+                    Log.e("RegisterPhoto", "Network error: " + error.toString());
+                    validations.showDialog(errorMessage, RegisterPhotoActivity.this);
+                }
             }
         }){
             @Override
@@ -246,13 +268,12 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         ByteArrayOutputStream array = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, array);
         byte[] imagenByte = array.toByteArray();
-        String imagenString = Base64.encodeToString(imagenByte, Base64.DEFAULT);
+        String imagenString = Base64.encodeToString(imagenByte, Base64.NO_WRAP);
         Log.i("imagen:", imagenString);
         return imagenString;
     }
     public void OnclickSavePhoto(View view) {
-        loadPhoto.setVisibility(View.VISIBLE);
-        textViewLoadPhoto.setVisibility(View.VISIBLE);
+        loadingOverlay.setVisibility(View.VISIBLE);
         buttonSavePhoto.setEnabled(false);
         buttonLoad.setEnabled(false);
         savePhoto();

@@ -57,4 +57,42 @@ class ActionController extends Controller
     {
         //
     }
+
+    public function checkAvailability(Request $request)
+    {
+        $userId = $request->input('userId');
+        $treeId = $request->input('treeId');
+
+        $actionTypes = ['REGAR', 'LIMPIEZA', 'ABONO', 'AGARRE'];
+        $availability = [];
+
+        foreach ($actionTypes as $actionType) {
+            $lastAction = Action::where('user_id', $userId)
+                ->where('tree_id', $treeId)
+                ->where('name', $actionType)
+                ->orderBy('created_at', 'desc')
+                ->first();
+
+            if ($lastAction) {
+                $daysPassed = $lastAction->created_at->diffInDays(now());
+                $daysRequired = 6;
+                $isAvailable = $daysPassed >= $daysRequired;
+                $availableDate = $lastAction->created_at->addDays($daysRequired)->format('Y-m-d');
+
+                $availability[$actionType] = [
+                    'available' => $isAvailable,
+                    'availableDate' => $availableDate,
+                    'daysRemaining' => max(0, $daysRequired - $daysPassed)
+                ];
+            } else {
+                $availability[$actionType] = [
+                    'available' => true,
+                    'availableDate' => now()->format('Y-m-d'),
+                    'daysRemaining' => 0
+                ];
+            }
+        }
+
+        return response()->json($availability);
+    }
 }

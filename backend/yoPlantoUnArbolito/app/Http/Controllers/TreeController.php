@@ -61,32 +61,55 @@ class TreeController extends Controller
     }
 
     public function savePhotoTree($id, Request $request){
+        \Log::info('savePhotoTree called with ID: ' . $id);
+        \Log::info('Request data: ' . json_encode($request->all()));
 
         $tree = Tree::where('id',$id)->first();
         if(isset($tree)){
+            \Log::info('Tree found: ' . $tree->id);
+
             if($request->photo){
+                \Log::info('Photo data received, length: ' . strlen($request->photo));
+
                 $image = $request->photo;
                 $image = str_replace('data:image/png;base64,', '', $image);
                 $image = str_replace(' ', '+', $image);
                 $photo = base64_decode($image);
+
+                \Log::info('Decoded photo size: ' . strlen($photo) . ' bytes');
+
                 $photoName = Str::slug($tree->updated_at).$tree->name."."."jpg";
                 $ruta = public_path("img/photosTree/");
+
+                \Log::info('Saving to: ' . $ruta . $photoName);
+
+                // Verificar si el directorio existe
+                if (!file_exists($ruta)) {
+                    \Log::warning('Directory does not exist, creating: ' . $ruta);
+                    mkdir($ruta, 0777, true);
+                }
+
                 file_put_contents($ruta.$photoName, $photo);
                 $tree->path_photo = $photoName;
                 $tree->save();
+
+                \Log::info('Photo saved successfully');
+
                 return response()->json([
                     "status" => 1,
                     "message" => "Registro exitoso",
                 ]);
             }
             else{
+                \Log::error('No photo field in request');
                 return response()->json([
                     "status" => 0,
-                    "message" => "No se pudo registrar la fotografia",
-                ], 404);
+                    "message" => "No se pudo registrar la fotografia - campo photo vacío",
+                ], 400);
             }
         }
         else{
+            \Log::error('Tree not found with ID: ' . $id);
             return response()->json([
                 "status" => 0,
                 "message" => "No existe el árbol seleccionado",

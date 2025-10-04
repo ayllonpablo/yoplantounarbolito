@@ -24,7 +24,7 @@ class UpdateTreeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['string', 'min:5', 'max:50'],
+            'name' => ['string', 'max:50'],
             'lat' => ['string'],
             'lng' => ['string'],
             'avatar' => ['string'],

@@ -25,7 +25,7 @@ public class AdapterDates extends RecyclerView.Adapter<AdapterDates.ViewHolderDa
     @NotNull
     @Override
     public ViewHolderDates onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
         return new ViewHolderDates(view);
     }
 

@@ -2,10 +2,10 @@ package app.sembrando.vidas;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.cardview.widget.CardView;
 import app.sembrando.vidas.classes.User;
 import app.sembrando.vidas.dataBasesInterfaz.UserDatabase;
 import app.sembrando.vidas.java_class.Preferences;
@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import java.util.Map;
 
 public class EditUserActivity extends AppCompatActivity {
 
-    EditText email, phone, /*password, password_confirmation*/ age, organization, firstname, lastname;
+    TextInputEditText email, phone, /*password, password_confirmation*/ age, organization, firstname, lastname;
 
     //request
     RequestQueue request;
@@ -65,6 +66,16 @@ public class EditUserActivity extends AppCompatActivity {
         phone = findViewById(R.id.editTextPhoneEditUser);
         /*password = findViewById(R.id.editTextPasswordEditUser);
         password_confirmation = findViewById(R.id.editTextConfirmationPasswordEditUser);*/
+
+        // Botón home
+        CardView buttonHome = findViewById(R.id.button_home_edit_user);
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditUserActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void editUser(){

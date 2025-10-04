@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import app.sembrando.vidas.classes.Tree;
 import app.sembrando.vidas.dataBasesInterfaz.TreeDatabase;
 import app.sembrando.vidas.java_class.Preferences;
@@ -46,6 +48,9 @@ public class EditTreeActivity extends AppCompatActivity {
     Tree tree;
     boolean avatar;
 
+    //Avatar Cards
+    CardView cardAvatarEdit1, cardAvatarEdit2, cardAvatarEdit3, cardAvatarEdit4, cardAvatarEdit5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +66,28 @@ public class EditTreeActivity extends AppCompatActivity {
         button_edit_name = findViewById(R.id.button_name_edit_tree);
         button_camera = findViewById(R.id.button_camera);
 
+        // Initialize avatar cards
+        cardAvatarEdit1 = findViewById(R.id.cardAvatarEdit1);
+        cardAvatarEdit2 = findViewById(R.id.cardAvatarEdit2);
+        cardAvatarEdit3 = findViewById(R.id.cardAvatarEdit3);
+        cardAvatarEdit4 = findViewById(R.id.cardAvatarEdit4);
+        cardAvatarEdit5 = findViewById(R.id.cardAvatarEdit5);
+
         preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         token = preference.getString("token","");
         id = preference.getString("id","");
 
         params = new HashMap<>();
+
+        // Botón home
+        CardView buttonHome = findViewById(R.id.button_home_edit_tree);
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditTreeActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         button_edit_name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,31 +143,56 @@ public class EditTreeActivity extends AppCompatActivity {
         request.add(JOR);
     }
 
+    private void resetAvatarBackgrounds() {
+        int defaultColor = ContextCompat.getColor(this, R.color.card_green_light);
+        cardAvatarEdit1.setCardBackgroundColor(defaultColor);
+        cardAvatarEdit2.setCardBackgroundColor(defaultColor);
+        cardAvatarEdit3.setCardBackgroundColor(defaultColor);
+        cardAvatarEdit4.setCardBackgroundColor(defaultColor);
+        cardAvatarEdit5.setCardBackgroundColor(defaultColor);
+    }
+
     public void OnclickSelectAvatar1(View view) {
         tree.setAvatar("avatar1");
         avatar = true;
+        resetAvatarBackgrounds();
+        cardAvatarEdit1.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(EditTreeActivity.this,"Hoja feliz seleccionada",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar2(View view) {
         tree.setAvatar("avatar2");
         avatar = true;
+        resetAvatarBackgrounds();
+        cardAvatarEdit2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(EditTreeActivity.this,"Brote feliz seleccionado",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar3(View view) {
         tree.setAvatar("avatar3");
         avatar = true;
+        resetAvatarBackgrounds();
+        cardAvatarEdit3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(EditTreeActivity.this,"Árbol feliz Seleccionado",Toast.LENGTH_SHORT).show();
     }
     public void OnclickSelectAvatar4(View view) {
         tree.setAvatar("avatar4");
         avatar = true;
+        resetAvatarBackgrounds();
+        cardAvatarEdit4.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(EditTreeActivity.this,"Maceta femenina Seleccionada",Toast.LENGTH_SHORT).show();
     }
     public void OnclickSelectAvatar5(View view) {
         tree.setAvatar("avatar5");
         avatar = true;
+        resetAvatarBackgrounds();
+        cardAvatarEdit5.setCardBackgroundColor(ContextCompat.getColor(this, R.color.dark_green));
         Toast.makeText(EditTreeActivity.this,"Maceta masculina Seleccionado",Toast.LENGTH_SHORT).show();
+    }
+
+    public void OnclickChangePhoto(View view) {
+        Intent photoActivity = new Intent(getApplicationContext(), RegisterPhotoActivity.class);
+        startActivity(photoActivity);
+        finish();
     }
 }

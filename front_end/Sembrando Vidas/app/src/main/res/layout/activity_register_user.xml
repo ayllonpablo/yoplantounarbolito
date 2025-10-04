@@ -1,170 +1,370 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<!--
+    User Registration Screen
+    Redesigned to match Bosquecito Urbano design system:
+    - Beige background (#EDE9DC)
+    - Poppins font family throughout
+    - Card-based design with rounded corners (20dp radius)
+    - Consistent color palette: dark_green primary, text_brown secondary
+    - Modern TextInputLayout components with outlined boxes
+    - Password toggle visibility enabled
+    - No embassy/Inspira logos (Bosquecito only)
+
+    Design Philosophy:
+    - Clean, welcoming registration experience
+    - Progressive disclosure with scrollable form
+    - Clear visual hierarchy with logo > title > subtitle > form
+    - Accessible input fields with proper hints and types
+    - Consistent 16dp spacing between form elements
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige_background"
+    android:fillViewport="true"
+    tools:context="app.sembrando.vidas.RegisterUserActivity">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="app.sembrando.vidas.RegisterUserActivity"
-        android:orientation="vertical"><![CDATA[
->
-    ]]>
-    <ScrollView
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="24dp">
+
+        <!-- Logo Bosquecito Urbano -->
+        <ImageView
+            android:id="@+id/logo_bosquecito_register"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Logo de Bosquecito Urbano"
+            app:srcCompat="@mipmap/logo_bosquecito"/>
+
+        <!-- Header Title -->
+        <TextView
+            android:id="@+id/text_register_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Únete a la comunidad"
+            android:textSize="24sp"
+            android:textColor="@color/dark_green"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/text_register_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crea tu cuenta para empezar a plantar árboles"
+            android:textSize="14sp"
+            android:textColor="@color/text_brown"
+            android:fontFamily="@font/poppins_light"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Main Registration Form Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_register_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:fillViewport="true">
-        <LinearLayout
+            app:cardCornerRadius="20dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_white">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="44dp" android:layout_marginRight="44dp">
-            <ImageView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp" app:srcCompat="@mipmap/logo"
-                    android:layout_gravity="center"
-                    android:id="@+id/imageView12" android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp" app:autoSizeTextType="uniform"/>
-            <TextView
-                    android:text="Empecemos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="#009688"
-                    android:id="@+id/textView19"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="#009688" android:layout_marginBottom="32dp"
-                    android:text="registrandonos!!"/>
-            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:padding="24dp">
+
+                <!-- Progress Indicator (initially hidden) -->
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/linear_progres_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:indeterminate="true"
-                    android:backgroundTint="@null"
-                    android:background="@color/blue_secondary" android:id="@+id/linear_progres_3"/>
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textField"
+                    android:visibility="gone"
+                    app:indicatorColor="@color/dark_green"
+                    app:trackColor="@color/card_green_light"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- First Name Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldFirstNameRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese nombre de usuario"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    app:counterMaxLength="50">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="Nombre"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextFirstNameRegisterUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTextFirstNameRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textField3"
+                        android:inputType="textCapWords"
+                        android:maxLength="50"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Last Name Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldLastNameRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese apellido de usuario"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    app:counterMaxLength="50">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="Apellido"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextLastNameRegisterUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTextLastNameRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
+                        android:inputType="textCapWords"
+                        android:maxLength="50"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Email Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldEmailRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    android:hint="Ingrese correo electrónico"
-                    app:counterMaxLength="50">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="Correo electrónico"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextEmailRegisterUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:id="@+id/editTextEmailRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textField33"
+                        android:maxLength="50"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Age Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldAgeRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Organización"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    app:counterMaxLength="50">
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editTextOrganizationRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textFieldd33"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="edad"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    app:counterMaxLength="50">
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:id="@+id/editTextAgeRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Ingrese numero de teléfono"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    app:counterMaxLength="50">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="Edad"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextAgeRegisterUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:id="@+id/editTextPhoneRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
+                        android:maxLength="3"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Phone Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldPhoneRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese contraseña"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    app:counterMaxLength="50"
-                    app:endIconMode="password_toggle">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="Número de teléfono"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextPhoneRegisterUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="15"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Organization Field (Optional) -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldOrganizationRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Organización (opcional)"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextOrganizationRegisterUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:maxLength="50"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Password Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldPasswordRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/dark_green"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextPasswordRegisterUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:id="@+id/editTextPasswordRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
+                        android:maxLength="50"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Confirm Password Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textFieldConfirmPasswordRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirme la contraseña"
-                    app:counterEnabled="true"
-                    app:boxBackgroundColor="#00FFFFFF"
-                    app:counterMaxLength="50"
-                    app:endIconMode="password_toggle">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="Confirmar contraseña"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/dark_green"
+                    app:hintTextColor="@color/dark_green"
+                    app:boxStrokeWidth="2dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/dark_green"
+                    android:layout_marginBottom="24dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextConfirmationPasswordRegisterUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:id="@+id/editTextConfirmationPasswordRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.button.MaterialButton
-                    android:text="Registrar"
+                        android:maxLength="50"
+                        android:textColor="@color/text_brown"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_light"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Register Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonRegisterUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Crear cuenta"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/poppins_bold"
                     android:onClick="OnclickRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/buttonRegisterUser"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextConfirmationPasswordRegisterUser"
-                    android:background="@drawable/button_1"
-                    android:elevation="10dp"
-                    android:layout_gravity="center"
-                    app:backgroundTint="@null" android:textAllCaps="false"/>
+                    app:cornerRadius="16dp"
+                    app:backgroundTint="@color/dark_green"
+                    app:elevation="4dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Login Link (for users who already have an account) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/text_already_registered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Ya tienes cuenta? "
+                android:textSize="14sp"
+                android:textColor="@color/text_brown"
+                android:fontFamily="@font/poppins_light"/>
+
+            <TextView
+                android:id="@+id/text_login_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicia sesión"
+                android:textSize="14sp"
+                android:textColor="@color/dark_green"
+                android:fontFamily="@font/poppins_bold"
+                android:clickable="true"
+                android:focusable="true"/>
+
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

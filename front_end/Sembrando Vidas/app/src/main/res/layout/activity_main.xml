@@ -8,135 +8,7 @@
     android:background="@color/beige_background"
     tools:context="app.sembrando.vidas.MainActivity">
 
-    <!-- Decorative Tree - Left Side (Large, occupies 0-38% width, 5-70% height) -->
-    <ImageView
-        android:id="@+id/tree_decorative"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="Árbol decorativo"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:srcCompat="@drawable/arbol_inicio"
-        app:layout_constraintTop_toBottomOf="@+id/progress_indicator"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_tree_bottom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="8dp"/>
-
-    <!-- Vertical Guideline (38% from start) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.38"/>
-
-    <!-- Horizontal Guideline (20% from top) for logo bosquecito area -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20"/>
-
-    <!-- Horizontal Guideline (38% from top) for center area -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.38"/>
-
-    <!-- Logo Bosquecito Urbano - Moved to blue box area -->
-    <ImageView
-        android:id="@+id/logo_bosquecito_top"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="Logo Bosquecito Urbano"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:srcCompat="@mipmap/logo_bosquecito"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_top"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_center"
-        app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- Horizontal Guideline (60% from top) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.62"/>
-
-    <!-- Horizontal Guideline (70% from top) - Tree bottom boundary -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_tree_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.70"/>
-
-    <!-- US Embassy Logo - Center Top -->
-    <ImageView
-        android:id="@+id/logo_embajada_usa_center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="Logo Embajada de Estados Unidos"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:srcCompat="@mipmap/embajada_usa"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_center"
-        app:layout_constraintBottom_toTopOf="@+id/logo_inspira_center"
-        app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- Inspira Alumni Bolivia Logo - Center Bottom -->
-    <ImageView
-        android:id="@+id/logo_inspira_center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="Logo Inspira Alumni Bolivia"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:srcCompat="@mipmap/logo_inspira"
-        app:layout_constraintTop_toBottomOf="@+id/logo_embajada_usa_center"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_bottom"
-        app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"/>
-
-    <!-- EcoWill Foundation Logo - Below tree (70-85% height range) -->
-    <ImageView
-        android:id="@+id/logo_ecowill"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="Logo EcoWill Foundation"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:srcCompat="@drawable/logo_ecowill"
-        app:layout_constraintTop_toBottomOf="@+id/guideline_tree_bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"/>
-
-    <!-- Loading Progress Indicator (hidden by default) -->
+    <!-- Loading Progress Indicator (at the very top) -->
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progress_indicator"
         android:layout_width="0dp"
@@ -150,5 +22,151 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:indicatorColor="@color/green_primary"
         app:trackColor="@color/beige_background"/>
+
+    <!-- Horizontal Guidelines for layout structure -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top_logos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_after_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_middle_logos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88"/>
+
+    <!-- Vertical Guideline for center alignment -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <!-- TOP ROW: Hojas decorativas (left) - Increased size -->
+    <ImageView
+        android:id="@+id/hojas_decorativas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Hojas decorativas"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/hojas_main"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_top_logos"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_after_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- TOP ROW: EcoWill Logo (right) - Increased size -->
+    <ImageView
+        android:id="@+id/logo_ecowill_top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Logo EcoWill Foundation"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/logo_ecowill"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_top_logos"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_after_top"
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_center"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- CENTER: Logo Bosquecito Urbano (main logo) -->
+    <ImageView
+        android:id="@+id/logo_bosquecito_center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Logo Bosquecito Urbano"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:srcCompat="@mipmap/logo_bosquecito"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_after_top"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_center_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- MIDDLE ROW: US Embassy Logo (left) - Same height as Inspira -->
+    <ImageView
+        android:id="@+id/logo_embajada_usa"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Logo Embajada de Estados Unidos"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:srcCompat="@mipmap/embajada_usa"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_center_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/logo_inspira"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/logo_inspira"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- MIDDLE ROW: Inspira Alumni Bolivia Logo (right) - Same height as Embassy -->
+    <ImageView
+        android:id="@+id/logo_inspira"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="Logo Inspira Alumni Bolivia"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:srcCompat="@mipmap/logo_inspira"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_center_logo"
+        app:layout_constraintStart_toEndOf="@+id/logo_embajada_usa"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- BOTTOM: Support Text - Below Embassy logo, aligned left -->
+    <TextView
+        android:id="@+id/text_con_apoyo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Con el apoyo de:"
+        android:textColor="@color/dark_green"
+        android:textSize="24dp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif"
+        app:layout_constraintTop_toBottomOf="@+id/logo_embajada_usa"
+        app:layout_constraintStart_toStartOf="@+id/logo_embajada_usa"
+        android:layout_marginTop="12dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

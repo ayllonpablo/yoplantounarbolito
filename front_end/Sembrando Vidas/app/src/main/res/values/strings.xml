@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sembrando Vida</string>
+    <string name="app_name">Bosquecito Urbano</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="hint_latitud"/>
     <!-- TODO: Remove or change this placeholder text -->
